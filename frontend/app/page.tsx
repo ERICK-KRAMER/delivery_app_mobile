@@ -107,7 +107,7 @@ export default function Home() {
           onClick={() => handleClick(3)}
         >
           <Image src="" alt="Bebidas" width={20} height={20} />
-          <p>Bebidas</p>
+          <p>Drinks</p>
           <span className="w-5 h-5 rounded-full bg-black flex justify-center items-center">
             <ChevronRight size={16} className="text-white rounded-full" />
           </span>

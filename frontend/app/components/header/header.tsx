@@ -1,4 +1,5 @@
 import { Search, ShoppingBag, User } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 const Header = () => {
@@ -10,9 +11,9 @@ const Header = () => {
 
   return (
     <header className="flex justify-between items-center p-5">
-      <span className="p-3 rounded-full shadow-md shadow-gray-400 cursor-pointer">
+      <Link href={"/login"} className="p-3 rounded-full shadow-md shadow-gray-400 cursor-pointer">
         <User className="text-red-300" />
-      </span>
+      </Link>
       <div className="flex justify-center items-center gap-4">
         <div className={`relative transition-all duration-500 ease-in-out ${isOpen ? "w-[240px]" : "w-10"}`}>
           <input type="text" className={` w-full py-3 rounded-3xl outline-none text-white font-medium transition-all duration-500 ease-in-out ${isOpen ? "pl-14 shadow-md shadow-gray-400 bg-red-300" : "pl-2"}`} />
