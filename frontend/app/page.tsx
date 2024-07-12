@@ -107,6 +107,23 @@ export default function Home() {
           </span>
         </span>
       </div>
+      <div className="p-5">
+        <h1>Recomendados</h1>
+        <div className=" h-52 flex items-center justify-center flex-col text-white">
+          <div className="rounded-lg bg-orange-400 w-11/12 h-3/4 cursor-pointer flex relative justify-center items-end pb-10">
+            <Image
+              className="absolute top-16 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-52 "
+              width={600}
+              height={600}
+              src="/pizza-product.png"
+              alt="test"
+            />
+          </div>
+          <span className="font-bold">
+            <p className="text-red-500 text-lg">Pizzas a partir de R$29.90</p>
+          </span>
+        </div>
+      </div>
     </>
   );
 }
