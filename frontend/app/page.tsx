@@ -17,6 +17,9 @@ export default function Home() {
   return (
     <>
       <Header />
+
+      {/* slides com foods promoçionais */}
+
       <Slide>
         <div className=" h-64 flex items-center justify-center text-white">
           <div className="rounded-lg bg-orange-400 w-11/12 h-5/6 cursor-pointer flex relative justify-center items-end pb-10">
@@ -61,6 +64,9 @@ export default function Home() {
           </div>
         </div>
       </Slide>
+
+      {/* filtros de categorias dos foods */}
+
       <div className="flex justify-between p-5 px-12">
         <span
           className={`h-24 w-16 rounded flex items-center justify-center flex-col gap-1 cursor-pointer ${current === 0 ? 'bg-orange-400 neon-item' : 'border-2 border-black'
@@ -107,9 +113,11 @@ export default function Home() {
           </span>
         </span>
       </div>
+
+      {/*  banner de apresentaçao da categoria */}
+
       <div className="p-5">
-        <h1>Recomendados</h1>
-        <div className=" h-52 flex items-center justify-center flex-col text-white">
+        <div className=" h-52 flex items-center justify-center flex-col gap-4 text-white">
           <div className="rounded-lg bg-orange-400 w-11/12 h-3/4 cursor-pointer flex relative justify-center items-end pb-10">
             <Image
               className="absolute top-16 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-52 "
@@ -123,6 +131,63 @@ export default function Home() {
             <p className="text-red-500 text-lg">Pizzas a partir de R$29.90</p>
           </span>
         </div>
+      </div>
+
+      {/* lista os item do banco de dados nessa area */}
+
+      <div className="px-5 py-4 grid gap-2 grid-cols-2 place-items-center">
+        <div className="w-44 h-56 bg-orange-400 rounded-xl flex items-center justify-center flex-col gap-1">
+          <Image
+            className="w-36"
+            width={600}
+            height={600}
+            src="/pizza-product.png"
+            alt="test"
+          />
+          <span className="font-bold text-white text-lg">Pizza Portuguesa</span>
+          <span className="font-semibold text-white">R$36.90</span>
+          <button className="bg-red-300 rounded-lg px-10 py-2">Adicionar</button>
+        </div>
+
+        <div className="w-44 h-56 bg-orange-400 rounded-xl flex items-center justify-center flex-col gap-1">
+          <Image
+            className="w-36"
+            width={600}
+            height={600}
+            src="/pizza-product.png"
+            alt="test"
+          />
+          <span className="font-bold text-white text-lg">Pizza Portuguesa</span>
+          <span className="font-semibold text-white">R$36.90</span>
+          <button className="bg-red-300 rounded-lg px-10 py-2">Adicionar</button>
+        </div>
+
+        <div className="w-44 h-56 bg-orange-400 rounded-xl flex items-center justify-center flex-col gap-1">
+          <Image
+            className="w-36"
+            width={600}
+            height={600}
+            src="/pizza-product.png"
+            alt="test"
+          />
+          <span className="font-bold text-white text-lg">Pizza Portuguesa</span>
+          <span className="font-semibold text-white">R$36.90</span>
+          <button className="bg-red-300 rounded-lg px-10 py-2">Adicionar</button>
+        </div>
+
+        <div className="w-44 h-56 bg-orange-400 rounded-xl flex items-center justify-center flex-col gap-1">
+          <Image
+            className="w-36"
+            width={600}
+            height={600}
+            src="/pizza-product.png"
+            alt="test"
+          />
+          <span className="font-bold text-white text-lg">Pizza Portuguesa</span>
+          <span className="font-semibold text-white">R$36.90</span>
+          <button className="bg-red-300 rounded-lg px-10 py-2">Adicionar</button>
+        </div>
+
       </div>
     </>
   );
