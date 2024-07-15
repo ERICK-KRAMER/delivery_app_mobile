@@ -1,9 +1,12 @@
+import { useStore } from "@/app/context/storeContext";
 import { Search, ShoppingBag, User } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const { cartItem } = useStore();
 
   const handleClick = () => {
     setIsOpen(prev => !prev);
@@ -26,7 +29,9 @@ const Header = () => {
         </div>
         <span className="p-3 rounded-full shadow-md shadow-gray-400 cursor-pointer relative">
           <ShoppingBag className="text-red-300" />
-          <span className="bg-red-500 text-white text-sm w-4 h-4 rounded-full flex justify-center items-center absolute top-2 right-1">0</span>
+          {cartItem ? (
+            <span className="bg-red-500 text-white text-sm w-4 h-4 rounded-full flex justify-center items-center absolute top-2 right-1">{cartItem}</span>
+          ) : null}
         </span>
       </div>
     </header>
