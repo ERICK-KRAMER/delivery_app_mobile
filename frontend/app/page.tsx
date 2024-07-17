@@ -5,10 +5,21 @@ import { Header } from "./components/header/header";
 import { Slide } from "./components/slide/slide";
 import { ChevronRight } from "lucide-react";
 import { useStore } from "./context/storeContext";
+import { useEffect } from "react";
+
 
 export default function Home() {
 
-  const { setItem, setCategories, category } = useStore();
+  const { setItem, setCategories, category, products, getProducts } = useStore();
+
+  useEffect(() => {
+    console.log('useEffect called');
+    getProducts();
+  }, []);
+
+  useEffect(() => {
+    console.log('Products updated:', products);
+  }, [products]);
 
   return (
     <>
