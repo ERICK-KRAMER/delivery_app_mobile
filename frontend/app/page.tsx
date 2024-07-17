@@ -7,10 +7,11 @@ import { useStore } from "./context/storeContext";
 import { useEffect } from "react";
 import { Categories } from "./components/categories/categories";
 import { Banner } from "./components/categories/banner";
+import { Products } from "./components/products/products";
 
 export default function Home() {
 
-  const { setItem, products, getProducts } = useStore();
+  const { products, getProducts } = useStore();
 
   useEffect(() => {
     console.log('useEffect called');
@@ -82,48 +83,7 @@ export default function Home() {
 
       {/* lista os item do banco de dados nessa area */}
 
-      <div className="px-5 py-4 grid gap-2 grid-cols-2 place-items-center">
-        <div className="w-44 h-56 bg-orange-400 rounded-xl flex items-center justify-center flex-col gap-1">
-          <Image
-            className="w-36"
-            width={600}
-            height={600}
-            src="/pizza-product.png"
-            alt="test"
-          />
-          <span className="font-bold text-white text-lg">Pizza Portuguesa</span>
-          <span className="font-semibold text-white">R$36.90</span>
-          <button className="bg-red-300 rounded-lg px-10 py-2" onClick={setItem}>Adicionar</button>
-        </div>
-
-        <div className="w-44 h-56 bg-orange-400 rounded-xl flex items-center justify-center flex-col gap-1">
-          <Image
-            className="w-36"
-            width={600}
-            height={600}
-            src="/pizza-product.png"
-            alt="test"
-          />
-          <span className="font-bold text-white text-lg">Pizza Portuguesa</span>
-          <span className="font-semibold text-white">R$36.90</span>
-          <button className="bg-red-300 rounded-lg px-10 py-2" onClick={setItem}>Adicionar</button>
-        </div>
-
-        {products && products.map(product => (
-          <div key={product.id} className="w-44 h-56 bg-orange-400 rounded-xl flex items-center justify-center flex-col gap-1">
-            <Image
-              className="w-36"
-              width={600}
-              height={600}
-              src={product.imageUrl}
-              alt={product.name}
-            />
-            <span className="font-bold text-white text-lg">{product.name}</span>
-            <span className="font-semibold text-white">{`R$${product.price}`}</span>
-            <button className="bg-red-300 rounded-lg px-10 py-2" onClick={setItem}>Adicionar</button>
-          </div>
-        ))}
-      </div>
+      <Products />
     </>
   );
 }

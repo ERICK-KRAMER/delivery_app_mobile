@@ -9,7 +9,7 @@ const Categories = () => {
     <>
       <div className="flex justify-between p-5 px-12">
         <span
-          className={`h-24 w-16 rounded flex items-center justify-center flex-col gap-1 cursor-pointer ${category === 0 ? 'bg-orange-400 neon-item' : 'border-2 border-black'
+          className={`h-24 w-16 rounded flex items-center justify-center flex-col gap-1 cursor-pointer ${category === 0 ? 'bg-orange-400 neon-item' : null
             }`}
           onClick={() => setCategories(0)}
         >
@@ -20,7 +20,7 @@ const Categories = () => {
           </span>
         </span>
         <span
-          className={`h-24 w-16 rounded flex items-center justify-center flex-col gap-1 cursor-pointer ${category === 1 ? 'bg-orange-400 neon-item' : 'border-2 border-black'
+          className={`h-24 w-16 rounded flex items-center justify-center flex-col gap-1 cursor-pointer ${category === 1 ? 'bg-orange-400 neon-item' : null
             }`}
           onClick={() => setCategories(1)}
         >
@@ -32,7 +32,7 @@ const Categories = () => {
           </span>
         </span>
         <span
-          className={`h-24 w-16 rounded flex items-center justify-center flex-col gap-1 cursor-pointer ${category === 2 ? 'bg-orange-400 neon-item' : 'border-2 border-black'
+          className={`h-24 w-16 rounded flex items-center justify-center flex-col gap-1 cursor-pointer ${category === 2 ? 'bg-orange-400 neon-item' : null
             }`}
           onClick={() => setCategories(2)}
         >
@@ -44,7 +44,7 @@ const Categories = () => {
           </span>
         </span>
         <span
-          className={`h-24 w-16 rounded flex items-center justify-center flex-col gap-1 cursor-pointer ${category === 3 ? 'bg-orange-400 neon-item' : 'border-2 border-black'
+          className={`h-24 w-16 rounded flex items-center justify-center flex-col gap-1 cursor-pointer ${category === 3 ? 'bg-orange-400 neon-item' : null
             }`}
           onClick={() => setCategories(3)}
         >
