@@ -3,14 +3,14 @@
 import Image from "next/image";
 import { Header } from "./components/header/header";
 import { Slide } from "./components/slide/slide";
-import { ChevronRight } from "lucide-react";
 import { useStore } from "./context/storeContext";
 import { useEffect } from "react";
 import { Categories } from "./components/categories/categories";
+import { Banner } from "./components/categories/banner";
 
 export default function Home() {
 
-  const { setItem, setCategories, category, products, getProducts } = useStore();
+  const { setItem, products, getProducts } = useStore();
 
   useEffect(() => {
     console.log('useEffect called');
@@ -34,10 +34,10 @@ export default function Home() {
               <p className="text-red-500 text-lg">Hamburguer Test por apenas $$$</p>
             </span>
             <Image
-              className="absolute top-7 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-52 h-52 bg-green-200"
+              className="absolute top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64"
               width={300}
               height={300}
-              src="/hamburguer.jpg"
+              src="/hamburguer.png"
               alt="test"
             />
           </div>
@@ -48,10 +48,10 @@ export default function Home() {
               <p className="text-red-500 text-lg">Hamburguer Test por apenas $$$</p>
             </span>
             <Image
-              className="absolute top-7 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-52 h-52 bg-green-200"
+              className="absolute top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64"
               width={300}
               height={300}
-              src="/hamburguer.jpg"
+              src="/hamburguer.png"
               alt="test"
             />
           </div>
@@ -62,10 +62,10 @@ export default function Home() {
               <p className="text-red-500 text-lg">Hamburguer Test por apenas $$$</p>
             </span>
             <Image
-              className="absolute top-7 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-52 h-52 bg-green-200"
+              className="absolute top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64"
               width={300}
               height={300}
-              src="/hamburguer.jpg"
+              src="/hamburguer.png"
               alt="test"
             />
           </div>
@@ -78,22 +78,7 @@ export default function Home() {
 
       {/*  banner de apresentaçao da categoria */}
 
-      <div className="p-5">
-        <div className=" h-52 flex items-center justify-center flex-col gap-4 text-white">
-          <div className="rounded-lg bg-orange-400 w-11/12 h-3/4 cursor-pointer flex relative justify-center items-end pb-10">
-            <Image
-              className="absolute top-16 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-52 "
-              width={600}
-              height={600}
-              src="/pizza-product.png"
-              alt="test"
-            />
-          </div>
-          <span className="font-bold">
-            <p className="text-red-500 text-lg">Pizzas a partir de R$29.90</p>
-          </span>
-        </div>
-      </div>
+      <Banner />
 
       {/* lista os item do banco de dados nessa area */}
 
