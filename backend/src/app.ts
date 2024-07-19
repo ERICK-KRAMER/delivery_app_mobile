@@ -1,6 +1,7 @@
-import express, { Request, Response } from "express";
 import cors from "cors";
 import { prismaClient } from "./prisma/prismaClient";
+import express, { Request, Response } from "express";
+import { createUserUseCaseController } from "./use-case/index"
 
 class App {
   private readonly app = express();
@@ -32,6 +33,11 @@ class App {
           return response.status(400).json({ error: 'Unexpected error.' });
         }
       }
+    });
+
+
+    this.app.post('/user/create', async (request: Request, response: Response) => {
+      return await createUserUseCaseController.handler(request, response);
     });
   }
 
