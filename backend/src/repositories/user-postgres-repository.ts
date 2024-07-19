@@ -1,5 +1,6 @@
+import { UserDTO } from "../use-case/userDTO";
 export interface IUserRepository {
-  save(): Promise<void>;
-  findByEmail(): Promise<void>;
-  update(): Promise<void>;
+  save(data: UserDTO): Promise<void>;
+  findByEmail(email: string): Promise<UserDTO>;
+  update(email: string, data: UserDTO): Promise<void>;
 }
