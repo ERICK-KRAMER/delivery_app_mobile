@@ -10,7 +10,10 @@ class CreateUserUseCaseController {
     const { name, email, password } = request.body;
     try {
       const result = await this.createUserUseCase.execute({ name, email, password });
-      return response.status(201).json(result);
+      return response.status(201).json({
+        message: "User created successfully",
+        data: result,
+      });
     } catch (error) {
       if (error instanceof Error) {
         return response.status(400).json({ error: error.message });
