@@ -9,14 +9,14 @@ export interface ProductDTO {
   description: string
   discountPercentage: number
   categoryId: string
-}
+};
 
 interface StoreContextProps {
   cartItem: number;
   category: number;
+  products: ProductDTO[];
   setItem(): void;
   setCategories(index: number): void;
-  products: ProductDTO[]
   getProducts(): Promise<void>;
 };
 
@@ -37,7 +37,7 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
 
   const setItem = () => {
     setCartItem(prev => prev + 1);
-  }
+  };
 
   const getProducts = async () => {
     const response = await fetch('http://localhost:3333/products', {
@@ -48,7 +48,7 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
     });
     const data = await response.json();
     setProducts(data);
-  }
+  };
 
   const setCategories = (index: number) => {
     setCategory(index);
