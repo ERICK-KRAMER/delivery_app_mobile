@@ -16,6 +16,9 @@ class Login implements ILoginRepository {
         throw new Error(`Error: ${response.statusText}`);
       }
       const responseData: Token = await response.json();
+
+      localStorage.setItem('token', responseData.token);
+
       return responseData;
     } catch (error) {
       console.error(error);
