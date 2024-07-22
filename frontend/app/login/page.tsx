@@ -16,7 +16,7 @@ export default function Page() {
         </span>
         <span className="w-full flex flex-col items-center gap-1">
           <Button>Submit</Button>
-          <span className="text-blue-400 hover:underline cursor-pointer">Do not have an account ? click here!</span>
+          <Link href={'/createAccount'} className="text-blue-400 hover:underline cursor-pointer">Do not have an account ? click here!</Link>
         </span>
       </form>
     </main>
