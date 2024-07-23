@@ -4,7 +4,7 @@ import { ChevronLeft } from "lucide-react";
 import { Input } from "../components/input/input";
 import { Button } from "../components/button/button-login";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Login } from "@/app/api/login";
+import { Login } from "@/app/api/db/login";
 import Link from "next/link";
 import { useAuth } from "../context/authContext";
 

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Input } from "../components/input/input";
 import { Button } from "../components/button/button-login";
 import { useForm } from "react-hook-form";
-import { Login } from "../api/login";
+import { Login } from "../api/db/login";
 
 export default function Page() {
   const { register, handleSubmit } = useForm();
