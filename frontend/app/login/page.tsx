@@ -15,6 +15,7 @@ type FormData = {
 
 export default function Page() {
   const { register, handleSubmit } = useForm<FormData>();
+
   const { signIn, isAuthenticated } = useAuth();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
@@ -24,7 +25,6 @@ export default function Page() {
     console.log(response);
     console.log(isAuthenticated);
   };
-
 
   return (
     <main className="h-screen grid place-items-center relative">
@@ -45,4 +45,4 @@ export default function Page() {
       </form>
     </main>
   );
-}
+};
