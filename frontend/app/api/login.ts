@@ -1,10 +1,10 @@
-import { ILoginRepository, ISignIn, ISignUp, Message, Token } from "./login-repository";
+import { ILoginRepository, ISignIn, ISignUp, Message } from "./login-repository";
 
 const endpoint: string = "http://localhost:3333/";
 
 class Login implements ILoginRepository {
 
-  async SignIn(data: ISignIn): Promise<Token> {
+  async SignIn(data: ISignIn): Promise<string> {
     const { email, password } = data;
     try {
       const response = await fetch(endpoint + "user/login", {
@@ -15,10 +15,7 @@ class Login implements ILoginRepository {
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
-      const responseData: Token = await response.json();
-
-      localStorage.setItem('token', responseData.token);
-
+      const responseData: string = await response.json();
       return responseData;
     } catch (error) {
       console.error(error);

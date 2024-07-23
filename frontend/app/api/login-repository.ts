@@ -10,10 +10,6 @@ export type ISignUp = {
   password: string;
 };
 
-export type Token = {
-  token: string;
-};
-
 export interface Message {
   message: string
   data: Data
@@ -32,6 +28,6 @@ export interface User {
 }
 
 export interface ILoginRepository {
-  SignIn(data: ISignIn): Promise<Token>;
+  SignIn(data: ISignIn): Promise<string>;
   SignUp(data: ISignUp): Promise<Message>;
 }

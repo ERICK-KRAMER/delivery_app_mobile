@@ -6,6 +6,7 @@ import { Button } from "../components/button/button-login";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Login } from "@/app/api/login";
 import Link from "next/link";
+import { useAuth } from "../context/authContext";
 
 type FormData = {
   email: string;
@@ -14,12 +15,16 @@ type FormData = {
 
 export default function Page() {
   const { register, handleSubmit } = useForm<FormData>();
+  const { signIn, isAuthenticated } = useAuth();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     const login = new Login();
     const response = await login.SignIn(data);
+    signIn(response);
     console.log(response);
+    console.log(isAuthenticated);
   };
+
 
   return (
     <main className="h-screen grid place-items-center relative">
