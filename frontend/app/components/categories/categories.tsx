@@ -1,5 +1,5 @@
 import { useStore } from "@/app/context/storeContext";
-import { ChevronRight } from "lucide-react";
+import { Beer, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 const Categories = () => {
@@ -48,7 +48,7 @@ const Categories = () => {
             }`}
           onClick={() => setCategories(3)}
         >
-          <Image src="" alt="Bebidas" width={20} height={20} />
+          <Beer width={20} height={20} />
           <p>Drinks</p>
           <span className={`w-5 h-5 rounded-full bg-black flex justify-center items-center transition-all duration-500 ease-in-out ${category === 3 ? "rotate-90" : ""}`}>
 

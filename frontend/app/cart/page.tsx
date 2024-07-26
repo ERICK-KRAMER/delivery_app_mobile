@@ -10,7 +10,6 @@ import { GetLocation, ViaCepResponse } from "../api/viaCep/viacep";
 import { useState } from "react";
 import { useStore } from "../context/storeContext";
 
-// Definir um tipo específico para os bairros
 type BairroAtendido = 'Jordão' | 'Prazeres' | 'Ibura';
 
 const freteValues: Record<BairroAtendido, number> = {
@@ -39,7 +38,7 @@ export default function Page() {
       const itemPrice = 30.00;
       const frete = freteValues[data.bairro as BairroAtendido];
       const total = itemPrice + frete;
-      getTotalValue(total); // Passa o valor total para a função do contexto
+      getTotalValue(total);
       return total;
     }
     return 0;
