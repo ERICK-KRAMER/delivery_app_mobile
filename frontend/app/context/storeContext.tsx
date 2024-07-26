@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 export interface ProductDTO {
   id: string
   name: string
@@ -18,7 +18,6 @@ interface StoreContextProps {
   totalValue: number | null;
   setItem(): void;
   setCategories(index: number): void;
-  getProducts(): Promise<void>;
   getTotalValue(total: number): void;
 };
 
@@ -42,16 +41,24 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
     setCartItem(prev => prev + 1);
   };
 
-  const getProducts = async () => {
-    const response = await fetch('http://localhost:3333/products', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    setProducts(data);
-  };
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:3333/products', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProducts();
+  }, [])
+
 
   const setCategories = (index: number): void => {
     setCategory(index);
@@ -63,7 +70,6 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
 
   const methods: StoreContextProps = {
     setItem,
-    getProducts,
     setCategories,
     getTotalValue,
     totalValue,

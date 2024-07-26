@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { GetLocation, ViaCepResponse } from "../api/viaCep/viacep";
 import { useState } from "react";
 import { useStore } from "../context/storeContext";
+import { Select } from "../components/select/select";
 
 type BairroAtendido = 'Jordão' | 'Prazeres' | 'Ibura';
 
@@ -97,6 +98,7 @@ export default function Page() {
                 <p className="text-3xl">${calculateTotal()}</p>
               </span>
             </div>
+            <Select />
             <Button className="bg-green-600 rounded my-4">Submit</Button>
           </>
         ) : (
