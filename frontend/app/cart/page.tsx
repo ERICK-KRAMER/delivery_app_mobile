@@ -9,9 +9,18 @@ import { useForm } from "react-hook-form";
 import { GetLocation, ViaCepResponse } from "../api/viaCep/viacep";
 import { useState } from "react";
 
+// Definir um tipo específico para os bairros
+type BairroAtendido = 'Jordão' | 'Prazeres' | 'Ibura';
+
+const freteValues: Record<BairroAtendido, number> = {
+  'Jordão': 5.00,
+  'Prazeres': 7.50,
+  'Ibura': 10.00,
+};
+
 export default function Page() {
   const { register, handleSubmit } = useForm();
-  const [data, setData] = useState<ViaCepResponse>();
+  const [data, setData] = useState<ViaCepResponse | null>(null);
 
   const handleClick = async (formData: any) => {
     try {
@@ -59,22 +68,29 @@ export default function Page() {
         </div>
       )}
 
-      <div className="bg-yellow-200 rounded p-2">
-        <span className="flex items-center justify-between">
-          <p>Items total</p>
-          <p>${0.00}</p>
-        </span>
-        <span className="flex items-center justify-between">
-          <p>Frete</p>
-          <p>${0.00}</p>
-        </span>
-        <span className="flex items-center justify-between">
-          <p className="text-3xl">Total a pagar</p>
-          <p className="text-3xl">${0.00}</p>
-        </span>
-      </div>
-
-      <Button className="bg-green-600 rounded my-4">Submit</Button>
+      {data && (
+        freteValues.hasOwnProperty(data.bairro) ? (
+          <>
+            <div className="bg-yellow-200 rounded p-2">
+              <span className="flex items-center justify-between">
+                <p>Items total</p>
+                <p>${30.00}</p>
+              </span>
+              <span className="flex items-center justify-between">
+                <p>Frete</p>
+                <p>${freteValues[data.bairro as BairroAtendido]}</p>
+              </span>
+              <span className="flex items-center justify-between">
+                <p className="text-3xl">Total a pagar</p>
+                <p className="text-3xl">${30.00 + freteValues[data.bairro as BairroAtendido]}</p>
+              </span>
+            </div>
+            <Button className="bg-green-600 rounded my-4">Submit</Button>
+          </>
+        ) : (
+          <span className="text-lg text-red-500 font-bold">Não estamos fazendo atendimento delivery nessa localidade.</span>
+        )
+      )}
     </main>
   );
 }
