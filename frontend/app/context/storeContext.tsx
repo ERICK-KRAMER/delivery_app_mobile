@@ -15,9 +15,11 @@ interface StoreContextProps {
   cartItem: number;
   category: number;
   products: ProductDTO[];
+  totalValue: number | null;
   setItem(): void;
   setCategories(index: number): void;
   getProducts(): Promise<void>;
+  getTotalValue(total: number): void;
 };
 
 const StoreContext = createContext<StoreContextProps>({} as StoreContextProps);
@@ -34,6 +36,7 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartItem, setCartItem] = useState<number>(0);
   const [category, setCategory] = useState<number>(0);
   const [products, setProducts] = useState<ProductDTO[]>([]);
+  const [totalValue, setTotalValue] = useState<number | null>(null);
 
   const setItem = () => {
     setCartItem(prev => prev + 1);
@@ -50,17 +53,23 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
     setProducts(data);
   };
 
-  const setCategories = (index: number) => {
+  const setCategories = (index: number): void => {
     setCategory(index);
+  };
+
+  const getTotalValue = (total: number): void => {
+    setTotalValue(total);
   };
 
   const methods: StoreContextProps = {
     setItem,
+    getProducts,
     setCategories,
+    getTotalValue,
+    totalValue,
     cartItem,
     category,
     products,
-    getProducts,
   };
 
   return (

@@ -8,6 +8,7 @@ import { Input } from "../components/input/input";
 import { useForm } from "react-hook-form";
 import { GetLocation, ViaCepResponse } from "../api/viaCep/viacep";
 import { useState } from "react";
+import { useStore } from "../context/storeContext";
 
 // Definir um tipo específico para os bairros
 type BairroAtendido = 'Jordão' | 'Prazeres' | 'Ibura';
@@ -21,6 +22,7 @@ const freteValues: Record<BairroAtendido, number> = {
 export default function Page() {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState<ViaCepResponse | null>(null);
+  const { getTotalValue } = useStore();
 
   const handleClick = async (formData: any) => {
     try {
@@ -30,6 +32,17 @@ export default function Page() {
     } catch (error) {
       console.error("Failed to fetch location data:", error);
     }
+  };
+
+  const calculateTotal = () => {
+    if (data && freteValues.hasOwnProperty(data.bairro)) {
+      const itemPrice = 30.00;
+      const frete = freteValues[data.bairro as BairroAtendido];
+      const total = itemPrice + frete;
+      getTotalValue(total); // Passa o valor total para a função do contexto
+      return total;
+    }
+    return 0;
   };
 
   return (
@@ -82,7 +95,7 @@ export default function Page() {
               </span>
               <span className="flex items-center justify-between">
                 <p className="text-3xl">Total a pagar</p>
-                <p className="text-3xl">${30.00 + freteValues[data.bairro as BairroAtendido]}</p>
+                <p className="text-3xl">${calculateTotal()}</p>
               </span>
             </div>
             <Button className="bg-green-600 rounded my-4">Submit</Button>
