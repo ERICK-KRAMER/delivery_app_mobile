@@ -1,14 +1,15 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
+
 export interface ProductDTO {
-  id: string
-  name: string
-  imageUrl: string
-  price: string
-  description: string
-  discountPercentage: number
-  categoryId: string
+  id: string;
+  name: string;
+  imageUrl: string;
+  price: string;
+  description: string;
+  discountPercentage: number;
+  categoryId: string;
 };
 
 interface StoreContextProps {
@@ -17,10 +18,12 @@ interface StoreContextProps {
   products: ProductDTO[];
   totalValue: number | null;
   items: ProductDTO[];
+  setItems: Dispatch<SetStateAction<ProductDTO[]>>;
   getItems(item: ProductDTO): void;
   setItem(): void;
   setCategories(index: number): void;
   getTotalValue(total: number): void;
+  removeItem(id: string): void;
 };
 
 const StoreContext = createContext<StoreContextProps>({} as StoreContextProps);
@@ -67,6 +70,10 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
     setItems(prev => [...prev, item]);
   };
 
+  const removeItem = (id: string) => {
+    setItems(prev => prev.filter(item => item.id !== id));
+  };
+
   const setCategories = (index: number): void => {
     setCategory(index);
   };
@@ -80,16 +87,18 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
     setCategories,
     getTotalValue,
     getItems,
+    removeItem,
     items,
     totalValue,
     cartItem,
     category,
     products,
+    setItems
   };
 
   return (
     <StoreContext.Provider value={methods}>{children}</StoreContext.Provider>
-  )
+  );
 };
 
 export { StoreContextProvider, useStore };

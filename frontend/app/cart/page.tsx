@@ -22,7 +22,7 @@ const freteValues: Record<BairroAtendido, number> = {
 export default function Page() {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState<ViaCepResponse | null>(null);
-  const { getTotalValue, items } = useStore();
+  const { getTotalValue, items, removeItem } = useStore();
 
   const handleClick = async (formData: any) => {
     try {
@@ -62,19 +62,27 @@ export default function Page() {
         <p className="text-xl">Delivery in 40 min</p>
       </div>
 
-      {
-        items.map((item, index) => (
-          <CartItem name={item.name} price={item.price} />
-        ))
-      }
+      {items.map((item, index) => (
+        <CartItem
+          id={item.id}
+          name={item.name}
+          price={item.price}
+          key={index}
+          removeItem={removeItem}
+        />
+      ))}
 
       <div className="h-px w-full bg-neutral-400 my-10"></div>
 
-      <form className="my-2 flex justify-end items-center" onSubmit={handleSubmit(handleClick)}>
-        <Input placeholder="Cep" {...register('cep')} />
-        <Input placeholder="Numero" {...register('numero')} />
-        <Button className="bg-green-600 flex justify-center items-center">Calcular</Button>
-      </form>
+      {items.length !== 0 && items.length !== null ? (
+        <form className="my-2 flex justify-end items-center" onSubmit={handleSubmit(handleClick)}>
+          <Input placeholder="Cep" {...register('cep')} />
+          <Input placeholder="Numero" {...register('numero')} />
+          <Button className="bg-green-600 flex justify-center items-center">Calcular</Button>
+        </form>
+      ) : (
+        <span className="text-lg text-red-500 font-bold">Você ainda não adicionou nenhum item na sacola</span>
+      )}
 
       {data && (
         <div>

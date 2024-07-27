@@ -2,13 +2,13 @@ import { Trash2 } from "lucide-react";
 import { useCount } from "../hooks/useCount";
 
 type CartItemProps = {
-  id?: number;
+  id: string;
   name: string;
   price: string;
+  removeItem: (id: string) => void;
 };
 
 const CartItem = (data: CartItemProps) => {
-
   const { increment, count, decrement } = useCount();
 
   return (
@@ -16,21 +16,25 @@ const CartItem = (data: CartItemProps) => {
       <div className="w-full flex justify-between items-center">
         <div className="flex flex-col">
           <span>{data.name}</span>
-          <span>${data.price}</span>
+          <span>${parseFloat(data.price).toFixed(2)}</span>
         </div>
         <div className="flex gap-2 items-center justify-center">
-          <button><Trash2 className="text-red-500" /></button>
+          <button onClick={() => data.removeItem(data.id)}>
+            <Trash2 className="text-red-500" />
+          </button>
           <div className="mt-5">
             <div className="border border-orange-400 rounded w-24 p-1 px-3 flex justify-between items-center">
-              <button className="text-orange-400 cursor-pointer text-2xl active:scale-90" name="decrement" onClick={decrement}>-</button>
-              <span>{count}</span>
-              <button className="text-orange-400 cursor-pointer text-2xl active:scale-90" name="increment" onClick={increment}>+</button>
+              <button className="text-orange-400" onClick={decrement}>-</button>
+              <span className="text-black">{count}</span>
+              <button className="text-orange-400" onClick={increment}>+</button>
             </div>
-            <small>${(count * Number(data.price))}</small>
+            <small>${(count * parseFloat(data.price)).toFixed(2)}</small>
           </div>
         </div>
       </div>
+      <div className="h-px w-full bg-neutral-400 my-10"></div>
     </>
   );
-}
+};
+
 export { CartItem };
