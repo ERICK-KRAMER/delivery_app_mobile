@@ -14,7 +14,7 @@ const Categories = () => {
           onClick={() => setCategories(0)}
         >
           <Image src="/buger.png" alt="Buger" width={20} height={20} />
-          <p>Buger</p>
+          <p>Burger</p>
           <span className={`w-5 h-5 rounded-full bg-black flex justify-center items-center transition-all duration-500 ease-in-out ${category === 0 ? "rotate-90" : ""}`}>
             <ChevronRight size={16} className="text-white rounded-full" />
           </span>
