@@ -16,7 +16,7 @@ const CartItem = (data: CartItemProps) => {
       <div className="w-full flex justify-between items-center">
         <div className="flex flex-col">
           <span>{data.name}</span>
-          <span>${parseFloat(data.price).toFixed(2)}</span>
+          <span>R${parseFloat(data.price).toFixed(2)}</span>
         </div>
         <div className="flex gap-2 items-center justify-center">
           <button onClick={() => data.removeItem(data.id)}>
@@ -28,7 +28,7 @@ const CartItem = (data: CartItemProps) => {
               <span className="text-black">{count}</span>
               <button className="text-orange-400" onClick={increment}>+</button>
             </div>
-            <small>${(count * parseFloat(data.price)).toFixed(2)}</small>
+            <small>R${(count * parseFloat(data.price)).toFixed(2)}</small>
           </div>
         </div>
       </div>

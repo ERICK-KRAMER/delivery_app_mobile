@@ -72,8 +72,6 @@ export default function Page() {
         />
       ))}
 
-      <div className="h-px w-full bg-neutral-400 my-10"></div>
-
       {items.length !== 0 && items.length !== null ? (
         <form className="my-2 flex justify-end items-center" onSubmit={handleSubmit(handleClick)}>
           <Input placeholder="Cep" {...register('cep')} />
@@ -97,16 +95,16 @@ export default function Page() {
           <>
             <div className="bg-yellow-200 rounded p-2">
               <span className="flex items-center justify-between">
-                <p>Items total</p>
-                <p>${30.00}</p>
+                <p>Total Items</p>
+                <p>R${30.00}</p>
               </span>
               <span className="flex items-center justify-between">
                 <p>Frete</p>
-                <p>${freteValues[data.bairro as BairroAtendido]}</p>
+                <p>R${freteValues[data.bairro as BairroAtendido]}</p>
               </span>
               <span className="flex items-center justify-between">
                 <p className="text-3xl">Total a pagar</p>
-                <p className="text-3xl">${calculateTotal()}</p>
+                <p className="text-3xl">R${calculateTotal()}</p>
               </span>
             </div>
             <Select />
