@@ -22,7 +22,7 @@ const freteValues: Record<BairroAtendido, number> = {
 export default function Page() {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState<ViaCepResponse | null>(null);
-  const { getTotalValue } = useStore();
+  const { getTotalValue, items } = useStore();
 
   const handleClick = async (formData: any) => {
     try {
@@ -62,7 +62,11 @@ export default function Page() {
         <p className="text-xl">Delivery in 40 min</p>
       </div>
 
-      <CartItem name={"Pizza portuguesa"} price={30.00} />
+      {
+        items.map((item, index) => (
+          <CartItem name={item.name} price={item.price} />
+        ))
+      }
 
       <div className="h-px w-full bg-neutral-400 my-10"></div>
 

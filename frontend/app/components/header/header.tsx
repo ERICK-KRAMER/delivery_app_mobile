@@ -6,7 +6,7 @@ import { useState } from "react";
 const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const { cartItem } = useStore();
+  const { items } = useStore();
 
   const handleClick = () => {
     setIsOpen(prev => !prev);
@@ -29,8 +29,8 @@ const Header = () => {
         </div>
         <Link href={'/cart'} className="p-3 rounded-full shadow-md shadow-gray-400 cursor-pointer relative">
           <ShoppingBag className="text-red-300" />
-          {cartItem ? (
-            <span className="bg-red-500 text-white text-sm w-4 h-4 rounded-full flex justify-center items-center absolute top-2 right-1">{cartItem}</span>
+          {items ? (
+            <span className="bg-red-500 text-white text-sm w-4 h-4 rounded-full flex justify-center items-center absolute top-2 right-1">{items.length}</span>
           ) : null}
         </Link>
       </div>

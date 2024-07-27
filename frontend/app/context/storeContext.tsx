@@ -16,6 +16,8 @@ interface StoreContextProps {
   category: number;
   products: ProductDTO[];
   totalValue: number | null;
+  items: ProductDTO[];
+  getItems(item: ProductDTO): void;
   setItem(): void;
   setCategories(index: number): void;
   getTotalValue(total: number): void;
@@ -33,6 +35,7 @@ const useStore = () => {
 
 const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartItem, setCartItem] = useState<number>(0);
+  const [items, setItems] = useState<ProductDTO[]>([]);
   const [category, setCategory] = useState<number>(0);
   const [products, setProducts] = useState<ProductDTO[]>([]);
   const [totalValue, setTotalValue] = useState<number | null>(null);
@@ -51,14 +54,18 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
           },
         });
         const data = await response.json();
+        console.log(data);
         setProducts(data);
       } catch (error) {
         console.log(error);
       }
     };
     getProducts();
-  }, [])
+  }, []);
 
+  const getItems = (item: ProductDTO) => {
+    setItems(prev => [...prev, item]);
+  };
 
   const setCategories = (index: number): void => {
     setCategory(index);
@@ -72,6 +79,8 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
     setItem,
     setCategories,
     getTotalValue,
+    getItems,
+    items,
     totalValue,
     cartItem,
     category,

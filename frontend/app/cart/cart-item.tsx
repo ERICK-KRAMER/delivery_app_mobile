@@ -4,7 +4,7 @@ import { useCount } from "../hooks/useCount";
 type CartItemProps = {
   id?: number;
   name: string;
-  price: number;
+  price: string;
 };
 
 const CartItem = (data: CartItemProps) => {
@@ -26,7 +26,7 @@ const CartItem = (data: CartItemProps) => {
               <span>{count}</span>
               <button className="text-orange-400 cursor-pointer text-2xl active:scale-90" name="increment" onClick={increment}>+</button>
             </div>
-            <small>${30.00}</small>
+            <small>${(count * Number(data.price))}</small>
           </div>
         </div>
       </div>

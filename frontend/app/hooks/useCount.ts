@@ -4,8 +4,8 @@ const useCount = () => {
   const [count, setCount] = useState<number>(1);
   const increment = () => setCount(count + 1);
   const decrement = () => {
-    if (count <= 0) {
-      setCount(0);
+    if (count <= 1) {
+      setCount(1);
     } else {
       setCount(count - 1);
     }

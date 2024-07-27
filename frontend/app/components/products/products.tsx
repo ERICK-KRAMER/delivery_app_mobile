@@ -1,8 +1,12 @@
-import { useStore } from "@/app/context/storeContext";
+import { ProductDTO, useStore } from "@/app/context/storeContext";
 import Image from "next/image";
 
 const Products = () => {
-  const { products, setItem, category } = useStore();
+  const { products, setItem, category, getItems } = useStore();
+
+  const handleClick = (item: ProductDTO) => {
+    getItems(item);
+  }
 
   return (
     <>
@@ -52,7 +56,7 @@ const Products = () => {
                 />
                 <span className="font-bold text-white text-base text-center px-1">{product.name}</span>
                 <span className="font-semibold text-white">{`R$${product.price}`}</span>
-                <button className="bg-red-300 rounded-lg px-10 py-2" onClick={setItem}>Adicionar</button>
+                <button className="bg-red-300 rounded-lg px-10 py-2" onClick={() => handleClick(product)}>Adicionar</button>
               </div>
             ))}
           </>
