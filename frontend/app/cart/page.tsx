@@ -69,7 +69,7 @@ export default function Page() {
           price={item.price}
           key={index}
           removeItem={removeItem}
-        />
+          quantity={0} />
       ))}
 
       {items.length !== 0 && items.length !== null ? (

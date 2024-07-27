@@ -5,18 +5,19 @@ type CartItemProps = {
   id: string;
   name: string;
   price: string;
+  quantity: number;
   removeItem: (id: string) => void;
 };
 
 const CartItem = (data: CartItemProps) => {
-  const { increment, count, decrement } = useCount();
+  const { count, increment, decrement } = useCount(data.quantity);
 
   return (
     <>
       <div className="w-full flex justify-between items-center">
         <div className="flex flex-col">
           <span>{data.name}</span>
-          <span>R${parseFloat(data.price).toFixed(2)}</span>
+          <span>${parseFloat(data.price).toFixed(2)}</span>
         </div>
         <div className="flex gap-2 items-center justify-center">
           <button onClick={() => data.removeItem(data.id)}>
@@ -28,7 +29,7 @@ const CartItem = (data: CartItemProps) => {
               <span className="text-black">{count}</span>
               <button className="text-orange-400" onClick={increment}>+</button>
             </div>
-            <small>R${(count * parseFloat(data.price)).toFixed(2)}</small>
+            <small>${(count * parseFloat(data.price)).toFixed(2)}</small>
           </div>
         </div>
       </div>

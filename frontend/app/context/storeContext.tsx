@@ -10,6 +10,7 @@ export interface ProductDTO {
   description: string;
   discountPercentage: number;
   categoryId: string;
+  quantity: number;
 };
 
 interface StoreContextProps {
@@ -44,7 +45,7 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [totalValue, setTotalValue] = useState<number | null>(null);
 
   const setItem = () => {
-    setCartItem(prev => prev + 1);
+    setCartItem((prev) => prev + 1);
   };
 
   useEffect(() => {
@@ -57,7 +58,6 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
           },
         });
         const data = await response.json();
-        console.log(data);
         setProducts(data);
       } catch (error) {
         console.log(error);
@@ -66,12 +66,18 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
     getProducts();
   }, []);
 
-  const getItems = (item: ProductDTO) => {
-    setItems(prev => [...prev, item]);
-  };
-
-  const removeItem = (id: string) => {
-    setItems(prev => prev.filter(item => item.id !== id));
+  const getItems = (newItem: ProductDTO) => {
+    setItems((prevItems) => {
+      const existingItem = prevItems.find(item => item.id === newItem.id);
+      if (existingItem) {
+        return prevItems.map(item =>
+          item.id === newItem.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+      return [...prevItems, { ...newItem, quantity: 1 }];
+    });
   };
 
   const setCategories = (index: number): void => {
@@ -82,18 +88,22 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
     setTotalValue(total);
   };
 
+  const removeItem = (id: string): void => {
+    setItems((prevItems) => prevItems.filter(item => item.id !== id));
+  };
+
   const methods: StoreContextProps = {
     setItem,
     setCategories,
     getTotalValue,
     getItems,
-    removeItem,
     items,
     totalValue,
     cartItem,
     category,
     products,
-    setItems
+    setItems,
+    removeItem,
   };
 
   return (
