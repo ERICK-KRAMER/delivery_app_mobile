@@ -10,35 +10,23 @@ const Products = () => {
 
   return (
     <>
-      <div className="px-5 py-4 grid gap-2 grid-cols-2 place-items-center">
+      <div className="px-10 py-4 flex flex-col gap-2">
 
         {category === 1 ? (
           <>
-            <div className="w-44 h-60 bg-orange-400 rounded-xl flex items-center justify-center flex-col gap-1">
+            <div className="w-full bg-orange-400 rounded-xl flex items-center justify-between gap-1 p-2">
               <Image
-                className="w-36"
+                className="w-40"
                 width={600}
                 height={600}
                 src="/pizza-product.png"
                 alt="test"
               />
-              <span className="font-bold text-white text-base text-center">Pizza Portuguesa</span>
-              <span className="font-semibold text-white">R$36.90</span>
-              <button className="bg-red-300 rounded-lg px-10 py-2" onClick={setItem}>Adicionar</button>
-            </div>
-
-
-            <div className="w-44 h-60 bg-orange-400 rounded-xl flex items-center justify-center flex-col gap-1">
-              <Image
-                className="w-36"
-                width={600}
-                height={600}
-                src="/pizza-product.png"
-                alt="test"
-              />
-              <span className="font-bold text-white text-base text-center">Pizza Portuguesa</span>
-              <span className="font-semibold text-white">R$36.90</span>
-              <button className="bg-red-300 rounded-lg px-10 py-2" onClick={setItem}>Adicionar</button>
+              <div className="felx flex-col gap-2 ">
+                <p className="font-bold text-white text-base">Pizza Portuguesa</p>
+                <p className="font-bold text-white">R$36.90</p>
+                <button className="bg-red-300 rounded-lg px-10 py-2" onClick={setItem}>Adicionar</button>
+              </div>
             </div>
           </>
         ) : null}
@@ -46,20 +34,31 @@ const Products = () => {
         {category === 0 ? (
           <>
             {products && products.map(product => (
-              <div key={product.id} className="w-44 h-60 bg-orange-400 rounded-xl flex items-center justify-center flex-col gap-1">
+              <div key={product.id} className="w-full bg-orange-400 rounded-xl flex items-center justify-between p-2">
                 <Image
-                  className="w-36"
+                  className="w-40"
                   width={600}
                   height={600}
                   src={product.imageUrl}
                   alt={product.name}
                 />
-                <span className="font-bold text-white text-base text-center px-1">{product.name}</span>
-                <span className="font-semibold text-white">{`R$${product.price}`}</span>
-                <button className="bg-red-300 rounded-lg px-10 py-2" onClick={() => handleClick(product)}>Adicionar</button>
+                <div className="felx flex-col gap-2 ">
+                  <p className="font-bold text-white text-base">{product.name}</p>
+                  <p className="font-bold text-white">R${product.price}</p>
+                  <button className="bg-red-300 rounded-lg px-10 py-2" onClick={() => handleClick(product)}>Adicionar</button>
+                </div>
               </div>
+
             ))}
           </>
+        ) : null}
+
+        {category === 2 ? (
+          <span className="text-lg text-red-500 font-bold">Não possuimos nenhum item dessa categoria ainda.</span>
+        ) : null}
+
+        {category === 3 ? (
+          <span className="text-lg text-red-500 font-bold">Não possuimos nenhum item dessa categoria ainda.</span>
         ) : null}
 
       </div>
