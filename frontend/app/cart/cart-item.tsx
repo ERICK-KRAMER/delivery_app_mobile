@@ -1,5 +1,6 @@
 import { Trash2 } from "lucide-react";
 import { useCount } from "../hooks/useCount";
+import { useStore } from "../context/storeContext";
 
 type CartItemProps = {
   id: string;
@@ -10,7 +11,10 @@ type CartItemProps = {
 };
 
 const CartItem = (data: CartItemProps) => {
-  const { count, increment, decrement } = useCount(data.quantity);
+  const { updateItemQuantity } = useStore();
+  const { count, increment, decrement } = useCount(data.quantity, (newCount) => {
+    updateItemQuantity(data.id, newCount);
+  });
 
   return (
     <>

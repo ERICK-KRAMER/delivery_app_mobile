@@ -25,6 +25,7 @@ interface StoreContextProps {
   setCategories(index: number): void;
   getTotalValue(total: number): void;
   removeItem(id: string): void;
+  updateItemQuantity(id: string, quantity: number): void;
 };
 
 const StoreContext = createContext<StoreContextProps>({} as StoreContextProps);
@@ -80,6 +81,12 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
+  const updateItemQuantity = (id: string, quantity: number) => {
+    setItems((prevItems) =>
+      prevItems.map(item => (item.id === id ? { ...item, quantity } : item))
+    );
+  };
+
   const setCategories = (index: number): void => {
     setCategory(index);
   };
@@ -97,6 +104,7 @@ const StoreContextProvider = ({ children }: { children: React.ReactNode }) => {
     setCategories,
     getTotalValue,
     getItems,
+    updateItemQuantity,
     items,
     totalValue,
     cartItem,
